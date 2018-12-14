@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+
+  <div>
+    <p id="directions-text">Rock Paper Scissors. To play: type "R" for Rock, "P" for Paper, and "S" for Scissors.</p>
+    <p id="userchoice-text"></p>
+    <p id="computerchoice-text"></p>
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="ties-text"></p>
+  </div>
+
+  <script type="text/javascript">
+
+    //array
+    var computerChoices = ["r", "p", "s"];
+
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+    var directionsText = document.getElementById("directions-text");
+    var userChoiceText = document.getElementById("userchoice-text");
+    var computerChoiceText = document.getElementById("computerchoice-text");
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var tiesText = document.getElementById("ties-text");
+
+        // user key
+        document.onkeyup = function(event) {
+        var userGuess = event.key;
+
+        // random computer
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        // user guesses
+        if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+
+        // user r, computer r
+        if ((userGuess === "r") && (computerGuess === "r")) {
+          tie++;
+        }
+
+        // user r, computer p
+        if ((userGuess === "r") && (computerGuess === "p")) {
+          losses++;
+        }
+
+        // user r, computer s
+        if ((userGuess === "r") && (computerGuess === "s")) {
+          wins++;
+        }
+
+        // user p, computer r
+        if ((userGuess === "p") && (computerGuess === "r")) {
+          wins++;
+        } 
+
+        // user p, computer p
+        if ((userGuess === "p") && (computerGuess === "p")) {
+          ties++;
+        }        
+
+        // user p, computer s
+        if ((userGuess === "p") && (computerGuess === "s")) {
+          losses++;
+        } 
+
+        // user s, computer r
+        if ((userGuess === "s") && (computerGuess === "r")) {
+          losses++;
+        } 
+
+        // user s, computer p
+        if ((userGuess === "s") && (computerGuess === "p")) {
+          wins++;
+        } 
+
+        // user s, computer s
+        if ((userGuess === "s") && (computerGuess === "s")) {
+          ties++;
+        } 
+
+        directionsText.textContent = "";
+
+        // display
+        userChoiceText.textContent = "You chose: " + userGuess;
+        computerChoiceText.textContent = "The computer chose: " + computerGuess;
+        winsText.textContent = "wins: " + wins;
+        lossesText.textContent = "losses: " + losses;
+        tiesText.textContent = "ties: " + ties;
+      }
+    };
+  </script>
+
+</body>
+
+</html>
